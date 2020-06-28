@@ -1,0 +1,56 @@
+<nz-layout class="h-100">
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" nzWidth="200px">
+      <div class="logo"></div>
+      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+        <li nz-menu-item>
+          <i nz-icon nzType="home"></i>
+          <span>首页</span>
+        </li>
+
+        <li nz-submenu nzTitle="用户管理" nzIcon="user">
+          <ul>
+            <li nz-menu-item [routerLink]="['/user/family-list']" routerLinkActive="router-link-active" >家庭成员</li>
+            <li nz-menu-item [routerLink]="['/user/classmate-list']" routerLinkActive="router-link-active">同学列表</li>
+            <li nz-menu-item [routerLink]="['/user/friend-list']" routerLinkActive="router-link-active">朋友列表</li>
+          </ul>
+        </li>
+
+        <li nz-submenu nzTitle="信息管理" nzIcon="safety">
+          <ul>
+            <li nz-menu-item>QQ信息</li>
+            <li nz-menu-item>微信信息</li>
+            <li nz-menu-item>支付信息</li>
+            <li nz-menu-item>淘宝信息</li>
+            <li nz-menu-item>游戏账号信息</li>
+          </ul>
+        </li>
+
+        <li nz-submenu nzTitle="菜单管理" nzIcon="team">
+          <ul>
+            <li nz-menu-item>QQ信息</li>
+            <li nz-menu-item>微信信息</li>
+            <li nz-menu-item>支付信息</li>
+            <li nz-menu-item>淘宝信息</li>
+          </ul>
+        </li>
+
+        <li nz-submenu nzTitle="文件管理" nzIcon="file">
+          <ul>
+            <li nz-menu-item>个人照片</li>
+            <li nz-menu-item>同学照片</li>
+            <li nz-menu-item>重要文件</li>
+          </ul>
+        </li>
+
+      </ul>
+    </nz-sider>
+    <nz-layout class="d-flex flex-column h-100">
+      <nz-header></nz-header>
+      <nz-content class="flex-grow-1 bg-white">
+        <div class="inner-content">
+          <router-outlet></router-outlet>
+        </div>
+      </nz-content>
+      <!-- <nz-footer>Ant Design ©2019 Implement By Angular</nz-footer> -->
+    </nz-layout>
+  </nz-layout>
