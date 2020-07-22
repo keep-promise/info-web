@@ -1,0 +1,48 @@
+<div class="mb-3">
+  <span class="fs-16 font-weight-bold">{{ tag }}</span>
+</div>
+<form nz-form [formGroup]="qqForm">
+  <div nz-row nzGutter="8">
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="12" nzRequired>qq号码</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="qqNo" placeholder="qq号码" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>qq密码</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input type="password" formControlName="qqNo" placeholder="qq密码" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="12" nzRequired>qq年龄</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="qqAge" placeholder="qq年龄" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>手机号码</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="qqPhoneNo" placeholder="手机号码"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+
+<div class="text-center">
+  <button nz-button nzType="primary" class="mr-2" (click)="save()">确定</button>
+  <button nz-button nzType="default" (click)="cancel()">取消</button>
+</div>

@@ -1,1 +1,53 @@
-<p>friend-list works!</p>
+<div class="d-flex justify-content-between">
+    <div class="mb-2">
+      <button nz-button (click)="addMember()" nzType="primary" class="mr-1">
+        新增
+      </button>
+      <button nz-button (click)="deleteMemberList()" nzType="danger">
+          删除
+      </button>
+    </div>
+  </div>
+
+  <nz-table
+        #Table
+        nzSize="middle"
+        nzBordered="true"
+        [nzLoading]="loading"
+        nzShowSizeChanger
+        [nzData]="listOfAllData"
+        (nzCurrentPageDataChange)="currentPageDataChange($event)"
+      >
+        <thead>
+          <tr>
+            <th
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+              nzWidth="4%"
+            ></th>
+            <th nzWidth="24%">姓名</th>
+            <th nzWidth="24%">年龄</th>
+            <th nzWidth="24%">出生日期</th>
+            <th nzWidth="24%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of Table.data">
+            <td nzShowCheckbox [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()"></td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.age }}</td>
+            <td>{{ data.birthday }}</td>
+            <td>
+                <button nz-button (click)="editMember(data)" nzType="primary" class="mr-1" nzGhost>
+                  编辑
+                </button>
+                <button nz-button (click)="deleteMember(data.id)" nzType="danger" nzGhost>
+                  删除
+                </button>
+            </td>
+          </tr>
+        </tbody>
+  </nz-table>
+

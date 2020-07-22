@@ -1,0 +1,84 @@
+<div class="mb-3">
+  <span class="fs-16 font-weight-bold">{{ tag }}</span>
+</div>
+<form nz-form [formGroup]="classmateForm">
+  <div nz-row nzGutter="8">
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="12" nzRequired>姓名</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="name" placeholder="姓名" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>性别</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select nzAllowClear formControlName="sex" nzPlaceHolder="Choose">
+            <nz-option [nzValue]="0" nzLabel="男"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="女"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="12" nzRequired>同学类型</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select nzAllowClear formControlName="type" nzPlaceHolder="Choose">
+            <nz-option [nzValue]="0" nzLabel="小学"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="初中"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="高中"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="大学"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>年龄</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="age" placeholder="年龄"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="12" nzRequired>手机号码</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="phoneNumber" placeholder="手机号码" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>qq</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="qq" placeholder="qq"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="12" nzRequired>邮箱</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="email" placeholder="邮箱"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  </div>
+</form>
+
+<div class="text-center">
+  <button nz-button nzType="primary" class="mr-2" (click)="save()">确定</button>
+  <button nz-button nzType="default" (click)="cancel()">取消</button>
+</div>

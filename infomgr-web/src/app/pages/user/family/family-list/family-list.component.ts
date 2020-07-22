@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { PublicService } from 'src/app/services/common/function/public.service';
 import { FamilyService } from 'src/app/services/user/family/family.service';
 
-
-interface ItemData {
+interface Family {
   id: number;
   name: string;
   age: number;
-  address: string;
+  phoneNumber: string;
+  email: string;
+  relationship: number;
+  birthday: Date;
 }
 
 @Component({
@@ -19,24 +24,20 @@ export class FamilyListComponent implements OnInit {
   isIndeterminate = false;
   isAllDisplayDataChecked = false;
 
-  listOfDisplayData: ItemData[] = [];
-  listOfAllData: ItemData[] = [];
+  checkIdList: number[] = [];
+  listOfDisplayData: Family[] = [];
+  listOfAllData: Family[] = [];
   mapOfCheckedId: { [key: string]: boolean } = {};
 
-  constructor(private familyService: FamilyService) { }
+  constructor(private router: Router,
+    private publicService: PublicService,
+    private familyService: FamilyService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      this.listOfAllData.push({
-        id: i,
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London, Park Lane no. ${i}`
-      });
-    }
+    this.getFamilyMemberList();
   }
 
-  currentPageDataChange($event: ItemData[]): void {
+  currentPageDataChange($event: Family[]): void {
     this.listOfDisplayData = $event;
     this.refreshStatus();
   }
@@ -45,6 +46,7 @@ export class FamilyListComponent implements OnInit {
     this.isAllDisplayDataChecked = this.listOfDisplayData.every(item => this.mapOfCheckedId[item.id]);
     this.isIndeterminate =
       this.listOfDisplayData.some(item => this.mapOfCheckedId[item.id]) && !this.isAllDisplayDataChecked;
+    this.getCheckIdList();
   }
 
   checkAll(value: boolean): void {
@@ -52,30 +54,51 @@ export class FamilyListComponent implements OnInit {
     this.refreshStatus();
   }
 
+  getCheckIdList() {
+    this.checkIdList = [];
+    for (let i in this.mapOfCheckedId) {
+      if (this.mapOfCheckedId[i]) {
+        this.checkIdList.push(Number(i));
+      }
+    }
+  }
+
   getFamilyMemberList() {
     this.familyService.getFamilyMemberList((result: any) => {
       if (result.success) {
-
+        this.listOfAllData = result.data;
       } else {
-
+        this.publicService.notice('error', '错误', result.msg);
       }
-    })
+    });
   }
 
   addMember() {
-
+    this.router.navigateByUrl("/user/family-edit");
   }
 
   deleteMemberList() {
-
+    this.familyService.deleteFamilyMembers({ idList: this.checkIdList }, (result: any) => {
+      if (result.success) {
+        this.getFamilyMemberList();
+      } else {
+        this.publicService.notice('error', '错误', result.msg);
+      }
+    });
   }
 
-  editMember() {
-
+  editMember(id: number) {
+    this.router.navigate(["/user/family-edit"], {queryParams: {id: id}});
   }
 
-  deleteMember() {
-
+  deleteMember(id: number) {
+    this.familyService.deleteFamilyMembers({ idList: [id] }, (result: any) => {
+      if (result.success) {
+        this.getFamilyMemberList();
+      } else {
+        this.publicService.notice('error', '错误', result.msg);
+      }
+    });
   }
 
 

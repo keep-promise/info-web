@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-between">
-  <div class="my-2">
+  <div class="mb-2">
     <button nz-button (click)="addMember()" nzType="primary" class="mr-1">
       新增
     </button>
-    <button nz-button (click)="deleteMemberList()" nzType="danger">
+    <button nz-button (click)="deleteMemberList()" nzType="danger" disabled="{{ checkIdList.length == 0 ? true : null }}">
         删除
     </button>
   </div>
@@ -29,7 +29,7 @@
           ></th>
           <th nzWidth="24%">姓名</th>
           <th nzWidth="24%">年龄</th>
-          <th nzWidth="24%">出生日期</th>
+          <th nzWidth="24%">手机号码</th>
           <th nzWidth="24%">操作</th>
         </tr>
       </thead>
@@ -38,12 +38,12 @@
           <td nzShowCheckbox [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()"></td>
           <td>{{ data.name }}</td>
           <td>{{ data.age }}</td>
-          <td>{{ data.address }}</td>
+          <td>{{ data.phoneNumber }}</td>
           <td>
-              <button nz-button (click)="editMember()" nzType="primary" class="mr-1">
+              <button nz-button (click)="editMember(data.id)" nzType="primary" class="mr-1" nzGhost>
                 编辑
               </button>
-              <button nz-button (click)="deleteMember()" nzType="danger">
+              <button nz-button (click)="deleteMember(data.id)" nzType="danger" nzGhost>
                 删除
               </button>
           </td>

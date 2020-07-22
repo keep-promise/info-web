@@ -9,11 +9,14 @@ import { PageLayoutComponent } from './pages/layout/page-layout/page-layout.comp
 
 import { CommonSharedModule } from 'src/app/services/common/common.module'
 import { UserModule } from 'src/app/pages/user/user.module';
+import { InfoModule } from 'src/app/pages/info/info.module';
+import { ChatroomComponent } from './pages/ws/chatroom/chatroom.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageLayoutComponent,
+    ChatroomComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,8 @@ import { UserModule } from 'src/app/pages/user/user.module';
     HttpClientModule,
     BrowserAnimationsModule,
     UserModule,
-    CommonSharedModule
+    InfoModule,
+    CommonSharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

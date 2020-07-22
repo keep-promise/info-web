@@ -7,8 +7,14 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
-const moduleList = [
+const zorroModuleList = [
   NzIconModule,
   NzLayoutModule,
   NzGridModule,
@@ -16,16 +22,23 @@ const moduleList = [
   NzTableModule,
   NzMenuModule,
   NzButtonModule,
+  NzInputModule,
+  NzSelectModule,
+  NzModalModule,
+  NzMessageModule,
+  NzNotificationModule,
+  NzDatePickerModule,
+
 ];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    moduleList
+    zorroModuleList
   ],
   exports: [
-    moduleList
+    zorroModuleList
   ]
 })
 export class ZorroModule { }

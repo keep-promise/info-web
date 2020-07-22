@@ -1,3 +1,68 @@
-<div class="h-100">
+<div class="d-flex justify-content-between">
+    <div class="mb-2">
+      <button nz-button (click)="addMember()" nzType="primary" class="mr-1">
+        新增
+      </button>
+      <button nz-button (click)="deleteMemberList()" nzType="danger">
+          删除
+      </button>
+    </div>
+  </div>
 
-</div>
+  <nz-table
+        #Table
+        nzSize="middle"
+        nzBordered="true"
+        [nzLoading]="loading"
+        nzShowSizeChanger
+        [nzData]="listOfAllData"
+        (nzCurrentPageDataChange)="currentPageDataChange($event)"
+      >
+        <thead>
+          <tr>
+            <th
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+              nzWidth="4%"
+            ></th>
+            <th nzWidth="16%">姓名</th>
+            <th nzWidth="16%">类型</th>
+            <th nzWidth="16%">性别</th>
+            <th nzWidth="16%">qq</th>
+            <th nzWidth="16%">手机号码</th>
+            <th nzWidth="16%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of Table.data">
+            <td nzShowCheckbox [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()"></td>
+            <td>{{ data.name }}</td>
+            <td>
+              <span *ngIf="data.type == 0">小学</span>
+              <span *ngIf="data.type == 1">初中</span>
+              <span *ngIf="data.type == 2">高中</span>
+              <span *ngIf="data.type == 3">大学</span>
+            </td>
+
+            <td>
+              <span *ngIf="data.sex == 0; else womenblock">男</span>
+              <ng-template #womenblock>
+                女
+              </ng-template>
+            </td>
+            <td>{{ data.qq }}</td>
+            <td>{{ data.phoneNumber }}</td>
+            <td>
+                <button nz-button (click)="editMember(data.id)" nzType="primary" class="mr-1" nzGhost>
+                  编辑
+                </button>
+                <button nz-button (click)="deleteMember(data.id)" nzType="danger" nzGhost>
+                  删除
+                </button>
+            </td>
+          </tr>
+        </tbody>
+  </nz-table>
+

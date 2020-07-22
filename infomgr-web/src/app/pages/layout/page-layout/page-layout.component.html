@@ -1,6 +1,6 @@
 <nz-layout class="h-100">
     <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" nzWidth="200px">
-      <div class="logo"></div>
+      <div class="logo text-center text-white">jiangxq</div>
       <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-menu-item>
           <i nz-icon nzType="home"></i>
@@ -9,7 +9,7 @@
 
         <li nz-submenu nzTitle="用户管理" nzIcon="user">
           <ul>
-            <li nz-menu-item [routerLink]="['/user/family-list']" routerLinkActive="router-link-active" >家庭成员</li>
+            <li nz-menu-item [routerLink]="['/user/family-list']" routerLinkActive="router-link-active">家庭成员</li>
             <li nz-menu-item [routerLink]="['/user/classmate-list']" routerLinkActive="router-link-active">同学列表</li>
             <li nz-menu-item [routerLink]="['/user/friend-list']" routerLinkActive="router-link-active">朋友列表</li>
           </ul>
@@ -17,7 +17,7 @@
 
         <li nz-submenu nzTitle="信息管理" nzIcon="safety">
           <ul>
-            <li nz-menu-item>QQ信息</li>
+            <li nz-menu-item [routerLink]="['/info/qq-list']" routerLinkActive="router-link-active">QQ信息</li>
             <li nz-menu-item>微信信息</li>
             <li nz-menu-item>支付信息</li>
             <li nz-menu-item>淘宝信息</li>
@@ -26,12 +26,6 @@
         </li>
 
         <li nz-submenu nzTitle="菜单管理" nzIcon="team">
-          <ul>
-            <li nz-menu-item>QQ信息</li>
-            <li nz-menu-item>微信信息</li>
-            <li nz-menu-item>支付信息</li>
-            <li nz-menu-item>淘宝信息</li>
-          </ul>
         </li>
 
         <li nz-submenu nzTitle="文件管理" nzIcon="file">
@@ -41,11 +35,25 @@
             <li nz-menu-item>重要文件</li>
           </ul>
         </li>
+        <li nz-menu-item  [routerLink]="['/chatroom']" routerLinkActive="router-link-active">
+          <i nz-icon nzType="message" nzTheme="outline"></i>
+          <span>聊天室</span>
+        </li>
 
       </ul>
     </nz-sider>
     <nz-layout class="d-flex flex-column h-100">
-      <nz-header></nz-header>
+      <nz-header>
+        <div class="d-flex justify-content-between pr-5">
+          <div class="text-white fs-18 font-weight-bold pl-2">
+            <span>个人信息管理系统</span>
+          </div>
+          <div class="text-white pr-5">
+            <a class="pr-3">登录</a>
+            <a>退出</a>
+          </div>
+        </div>
+      </nz-header>
       <nz-content class="flex-grow-1 bg-white">
         <div class="inner-content">
           <router-outlet></router-outlet>

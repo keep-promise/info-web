@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable,of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 let HTTPOPTIONS = {
@@ -6,7 +8,7 @@ let HTTPOPTIONS = {
   withCredentials: true
 }
 
-let BASEURL = "http://localhost:8080/"
+let serverUrl = "http://localhost:8080/"
 
 
 @Injectable({
@@ -23,13 +25,13 @@ export class HttpService {
    * @param {string} url地址
    * @param {any} [options]可选设置的头信息
    */
-  get(url: string, options?: any, callback?: Function) {
+  get(url: string, options?: any, response?: Function) {
     if ( options && typeof options == "function") {
-      callback = options;
+      response = options;
       options = HTTPOPTIONS;
     }
-    url = url.startsWith("http") ? url : BASEURL + url;
-    this.http.get(url, options).pipe(catchError(this.handleError('http错误', url))).subscribe(result => callback(result));
+    url = url.startsWith("http") ? url : serverUrl + url;
+    this.http.get(url, options).pipe(catchError(this.handleError('http错误', url))).subscribe(result => response(result));
   }
 
 
@@ -37,35 +39,35 @@ export class HttpService {
    * @param {string} url地址
    * @param {any} [options]可选设置的头信息
    */
-  post(url: string, body: any | null, options?: any, callback?: Function) {
+  post(url: string, body: any | null, options?: any, response?: Function) {
     if ( options && typeof options == "function") {
-      callback = options;
+      response = options;
       options = HTTPOPTIONS;
     }
-    url = url.startsWith("http") ? url : BASEURL + url;
-    this.http.post(url, body, options).pipe(catchError(this.handleError('http错误', url))).subscribe(result => callback(result));
+    url = url.startsWith("http") ? url : serverUrl + url;
+    this.http.post(url, body, options).pipe(catchError(this.handleError('http错误', url))).subscribe(result => response(result));
   }
 
 
-  /**
-   * 处理请求错误
-   * @param error
-   * @returns {void|Promise<string>|Promise<T>|any}
-   */
-  private handleError(error) {
-    console.log(error);
-    let msg = '请求失败';
-    if (error.status == 400) {
-      console.log('请求参数正确');
-    } else if (error.status == 404) {
-    console.error('请检查路径是否正确');
-    } else if (error.status == 500) {
-    console.error('请求的服务器错误');
-    }
-    console.log(error);
-    return {success: false, msg: msg};
+  // /**
+  //  * 处理请求错误
+  //  * @param error
+  //  * @returns {void|Promise<string>|Promise<T>|any}
+  //  */
+  // private handleError(error) {
+  //   console.log(error);
+  //   let msg = '请求失败';
+  //   if (error.status == 400) {
+  //     console.log('请求参数正确');
+  //   } else if (error.status == 404) {
+  //   console.error('请检查路径是否正确');
+  //   } else if (error.status == 500) {
+  //   console.error('请求的服务器错误');
+  //   }
+  //   console.log(error);
+  //   return {success: false, msg: msg};
 
-    }
+  //   }
 
   /**
    * Handle Http operation that failed.

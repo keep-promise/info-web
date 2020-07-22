@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-between">
+    <div class="mb-2">
+      <button nz-button (click)="addQQ()" nzType="primary" class="mr-1">
+        新增
+      </button>
+      <button nz-button (click)="deleteQQList()" nzType="danger" disabled="{{ checkIdList?.length == 0 ? true : null }}">
+          删除
+      </button>
+    </div>
+  </div>
+
+  <nz-table
+        #Table
+        nzSize="middle"
+        nzBordered="true"
+        [nzLoading]="loading"
+        nzShowSizeChanger
+        [nzData]="listOfAllData"
+        (nzCurrentPageDataChange)="currentPageDataChange($event)"
+      >
+        <thead>
+          <tr>
+            <th
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+              nzWidth="5%"
+            ></th>
+            <th nzWidth="19%">QQ号码</th>
+            <th nzWidth="19%">QQ密码</th>
+            <th nzWidth="19%">QQ年龄</th>
+            <th nzWidth="19%">手机号码</th>
+            <th nzWidth="19%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of Table.data">
+            <td nzShowCheckbox [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()"></td>
+            <td>{{ data.qqNo }}</td>
+            <td>{{ data.qqPassword }}</td>
+            <td>{{ data.qqAge }}</td>
+            <td>{{ data.qqPhoneNo }}</td>
+            <td>
+                <button nz-button (click)="editQQ(data.id)" nzType="primary" class="mr-1" nzGhost>
+                  编辑
+                </button>
+                <button nz-button (click)="deleteQQ(data.id)" nzType="danger" nzGhost>
+                  删除
+                </button>
+            </td>
+          </tr>
+        </tbody>
+  </nz-table>
