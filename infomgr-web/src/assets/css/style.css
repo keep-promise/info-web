@@ -5,7 +5,10 @@
 .bg-blue {background-color: blue;}
 .bg-yellow {background-color: yellow;}
 
+.herf-color {color: #1890ff !important}
 
+
+/* 字体大小设置 */
 .fs-1 {font-size: 1px;}
 .fs-2 {font-size: 2px;}
 .fs-3 {font-size: 3px;}
@@ -40,3 +43,21 @@
 .fs-32 {font-size: 32px;}
 .fs-33 {font-size: 33px;}
 .fs-34 {font-size: 34px;}
+.fs-35 {font-size: 35px;}
+.fs-36 {font-size: 36px;}
+.fs-37 {font-size: 37px;}
+.fs-38 {font-size: 38px;}
+.fs-39 {font-size: 39px;}
+.fs-40 {font-size: 40px;}
+
+/* padding设置 */
+.pd-1{padding: 1px;}
+.pd-10{padding: 10px;}
+
+
+/* 旋转设置 */
+.rotate-30 {
+  transform: rotate(30deg);
+}
+
+

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -42,4 +43,22 @@ export class PublicService {
       nzOnOk: () => operate,
     })
   }
+
+  /*
+  * @Descripttion: 表单校验
+  * @param
+  *   form: 表单
+  */
+  validForm(form: FormGroup) {
+    for (const i in form.controls) {
+      form.controls[i].markAsDirty();
+      form.controls[i].updateValueAndValidity();
+    }
+    if (form.valid) {
+      return true;
+    }
+    return false;
+  }
+
+
 }

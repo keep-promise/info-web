@@ -1,31 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageLayoutComponent } from './pages/layout/page-layout/page-layout.component';
 
-import { CommonSharedModule } from 'src/app/services/common/common.module'
-import { UserModule } from 'src/app/pages/user/user.module';
-import { InfoModule } from 'src/app/pages/info/info.module';
-import { ChatroomComponent } from './pages/ws/chatroom/chatroom.component';
+import { ZorroModule } from 'src/app/services/common/zorro/zorro.module';
+import { CommonSharedModule } from 'src/app/services/common/common.module';
+import { LoginComponent } from './pages/login/login.component';
+import { Error404Component } from './pages/error/error404/error404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageLayoutComponent,
-    ChatroomComponent,
+    LoginComponent,
+    Error404Component,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    UserModule,
-    InfoModule,
     CommonSharedModule,
+    ZorroModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,6 +13,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 const zorroModuleList = [
   NzIconModule,
@@ -28,6 +31,9 @@ const zorroModuleList = [
   NzMessageModule,
   NzNotificationModule,
   NzDatePickerModule,
+  NzCheckboxModule,
+  NzResultModule,
+  NzAvatarModule,
 
 ];
 
